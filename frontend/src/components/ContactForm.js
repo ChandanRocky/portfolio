@@ -25,7 +25,7 @@ export default function ContactForm() {
 
     setStatus({ state: "loading", message: "Transmitting…" });
     try {
-      const res = await fetch(`${API}/api/contact`, {
+      const res = await fetch(`${API || ""}/api/contact`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
@@ -35,7 +35,18 @@ export default function ContactForm() {
           message: form.message.trim(),
         }),
       });
-      const data = await res.json();
+
+      let data = {};
+      const contentType = res.headers.get("content-type");
+      if (contentType && contentType.includes("application/json")) {
+        data = await res.json();
+      } else {
+        // Fallback for non-JSON responses (like Vercel 404 HTML pages)
+        throw new Error(
+          `Server returned an invalid response (Status ${res.status}). Please make sure your backend is configured and running.`
+        );
+      }
+
       if (!res.ok) throw new Error(data.detail || "Send failed");
       setStatus({ state: "success", message: data.message || "Message delivered." });
       setForm({ name: "", email: "", subject: "", message: "" });
