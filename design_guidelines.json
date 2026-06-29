@@ -1,0 +1,99 @@
+{
+  "theme": "dark",
+  "archetype": "7 (Electric & Neon) + 5 (Luxury)",
+  "design_philosophy": "The Cosmic Void Navigator. An immersive, 3D-driven portfolio where the UI feels like a high-end cinematic terminal. Heavy use of negative space, micro-animations, fluid physics, and stark neon accents against void black.",
+  "color_palette": {
+    "background_primary": "#050505",
+    "background_secondary": "#111111",
+    "background_glass": "rgba(17, 17, 17, 0.6)",
+    "text_primary": "#F8F9FA",
+    "text_secondary": "#8B949E",
+    "accent_primary": "#CCFF00",
+    "accent_secondary": "#00F0FF",
+    "accent_danger": "#FF003C",
+    "border_color": "rgba(255, 255, 255, 0.1)",
+    "hover_state": "#B8E600"
+  },
+  "typography": {
+    "heading_font": "Orbitron",
+    "heading_fallback": "sans-serif",
+    "body_font": "JetBrains Mono",
+    "body_fallback": "monospace",
+    "hierarchy": {
+      "h1": "text-5xl sm:text-6xl lg:text-7xl tracking-tighter uppercase font-black",
+      "h2": "text-3xl sm:text-4xl tracking-tight uppercase",
+      "h3": "text-xl sm:text-2xl uppercase",
+      "body": "text-base tracking-wide leading-relaxed",
+      "labels": "text-xs tracking-[0.2em] uppercase"
+    }
+  },
+  "layout_and_spacing": {
+    "container_padding": "px-6 sm:px-12 lg:px-24",
+    "section_spacing": "py-32 lg:py-48",
+    "grid_system": "The Tetris Grid (Bento). Asymmetric layouts. Direct children of grid MUST have explicit spans.",
+    "border_radius": "rounded-none",
+    "surfaces": "Glassmorphism with heavy blur (backdrop-blur-2xl) and 1px sharp inner borders. No soft shadows, prefer solid 1px neon strokes on hover."
+  },
+  "motion_and_interactions": {
+    "scroll_library": "lenis",
+    "animations_library": "framer-motion",
+    "3d_library": "react-three-fiber or custom canvas shaders",
+    "hover_effects": "Magnetic buttons, text glitch effects on hover, borders light up using Tracing Beam style.",
+    "page_transitions": "Cinematic stagger. Elements slide up and fade in with 0.8s duration, ease [0.16, 1, 0.3, 1].",
+    "custom_cursor": "Small neon dot that expands to a larger circle or 'VIEW' text on clickable elements."
+  },
+  "page_sections": [
+    {
+      "name": "Header & Nav",
+      "description": "Sticky nav with glassmorphism. Left: 'CHANDAN GOWDA'. Right: Navigation links. Bottom border 1px solid white/10.",
+      "components": ["Sticky Header", "Magnetic Links"]
+    },
+    {
+      "name": "Hero",
+      "description": "Immersive 3D scene (particles or wireframe). Massive glitch text 'CHANDAN GOWDA AH'. 'GenAI Data Engineer' typed out via typewriter effect. Neon CTA buttons.",
+      "components": ["R3F Canvas", "Typewriter Effect", "Glitch Text", "Magnetic Button"]
+    },
+    {
+      "name": "Stats & About",
+      "description": "Bento grid layout for stats ('3+ Years Experience', '10+ Projects'). Uses subtle noise texture on cards and neon numbers.",
+      "components": ["Bento Grid", "Animated Counters", "Noise Overlay"]
+    },
+    {
+      "name": "Skills (Technical Arsenal)",
+      "description": "Terminal-style UI. Monospace fonts. Categories like 'GenAI & LLMs', 'Data Pipelines' glowing on hover with a scanline effect.",
+      "components": ["Terminal Window Card", "Hover Reveal List"]
+    },
+    {
+      "name": "Projects Showcase",
+      "description": "Grid of project cards with categorical filters. Cards feature stark black/white default states that reveal glowing neon elements or color images on hover.",
+      "components": ["Filter Pills", "Project Card with Image Masking", "Custom Cursor Target"]
+    },
+    {
+      "name": "Experience & Certifications",
+      "description": "Career timeline with a vertical connecting line glowing like a neon fiber optic. Certificates display in a slow endless marquee.",
+      "components": ["Glowing Timeline", "Marquee Carousel"]
+    },
+    {
+      "name": "Contact / Footer",
+      "description": "Massive typography 'LET'S BUILD.' Links to LinkedIn, Email, Phone. Deep void background.",
+      "components": ["Giant Footer Text", "Magnetic Links"]
+    }
+  ],
+  "image_urls": {
+    "hero_background_texture": "https://images.unsplash.com/photo-1770486036751-e55247238964?crop=entropy&cs=srgb&fm=jpg&ixid=M3w3NTY2NzB8MHwxfHNlYXJjaHwyfHxhYnN0cmFjdCUyMGdsb3dpbmclMjBuZW9uJTIwcGFydGljbGVzJTIwZGFyayUyMGJhY2tncm91bmR8ZW58MHx8fHwxNzgyNzEzMjY0fDA&ixlib=rb-4.1.0&q=85",
+    "project_thumbnail_placeholder_1": "https://images.unsplash.com/photo-1674027444485-cec3da58eef4?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NjY2NzF8MHwxfHNlYXJjaHwxfHxjeWJlcnB1bmslMjBhaSUyMG5ldXJhbCUyMG5ldHdvcmslMjBhYnN0cmFjdHxlbnwwfHx8fDE3ODI3MTMyNjR8MA&ixlib=rb-4.1.0&q=85",
+    "project_thumbnail_placeholder_2": "https://images.unsplash.com/photo-1672872476232-da16b45c9001?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NjY2NzF8MHwxfHNlYXJjaHwzfHxjeWJlcnB1bmslMjBhaSUyMG5ldXJhbCUyMG5ldHdvcmslMjBhYnN0cmFjdHxlbnwwfHx8fDE3ODI3MTMyNjR8MA&ixlib=rb-4.1.0&q=85",
+    "chandan_avatar": "https://chandan-ai-engineer.vercel.app/chandan_anime_closed.png"
+  },
+  "instructions_to_main_agent": [
+    "CRITICAL: Write all React components in .js or .jsx files, NOT .tsx. We are using JavaScript.",
+    "Use pure HTML + Tailwind for complex layouts instead of restrictive Shadcn UI containers, to achieve the radical asymmetry and overlapping needed.",
+    "Implement a Custom Cursor component (e.g., a glowing dot that scales up on interactable items).",
+    "MUST use framer-motion heavily for scroll-triggered staggered text reveals, magnetic buttons, and page transitions.",
+    "Incorporate Lenis for smooth momentum scrolling. This is mandatory for the 'Godly' high-end feel.",
+    "Add a CSS noise/grain overlay (pointer-events-none) across the entire site to give it a cinematic, textured feel.",
+    "Ensure ALL interactive and key informational elements have 'data-testid' attributes (e.g., data-testid='project-card-1', data-testid='contact-email-link').",
+    "Use Orbitron for headings and JetBrains Mono for body and labels.",
+    "Use React Three Fiber for a 3D background if possible, otherwise use the provided hero_background_texture with a CSS scanline overlay."
+  ]
+}
