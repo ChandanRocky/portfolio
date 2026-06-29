@@ -5,6 +5,8 @@ const CONTACTS = [
   { label: "LinkedIn", value: "chandan-gowda", href: PROFILE.linkedin, testid: "contact-linkedin" },
   { label: "Email · Fastest Reply", value: PROFILE.email, href: `mailto:${PROFILE.email}`, testid: "contact-email" },
   { label: "Phone · India", value: PROFILE.phone, href: `tel:${PROFILE.phone.replace(/\s+/g, "")}`, testid: "contact-phone" },
+  { label: "GitHub", value: "ChandanRocky", href: PROFILE.github, testid: "contact-github" },
+  { label: "Resume · Download", value: ".docx · Updated", href: PROFILE.resumeUrl, download: true, testid: "contact-resume" },
 ];
 
 export default function Contact() {
@@ -16,7 +18,7 @@ export default function Contact() {
       </div>
 
       <div className="relative">
-        <div className="section-label mb-6">// 06 — Contact</div>
+        <div className="section-label mb-6">// 07 — Contact</div>
         <motion.h2
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -40,13 +42,14 @@ export default function Contact() {
           ))}
         </div>
 
-        <div className="mt-16 grid md:grid-cols-3 gap-3 sm:gap-4" data-testid="contact-cards">
+        <div className="mt-16 grid md:grid-cols-3 lg:grid-cols-5 gap-3 sm:gap-4" data-testid="contact-cards">
           {CONTACTS.map((c, i) => (
             <motion.a
               key={c.label}
               href={c.href}
-              target={c.label === "LinkedIn" ? "_blank" : undefined}
+              target={c.label === "LinkedIn" || c.label === "GitHub" ? "_blank" : undefined}
               rel="noopener noreferrer"
+              download={c.download}
               data-testid={c.testid}
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}

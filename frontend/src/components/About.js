@@ -29,16 +29,17 @@ export default function About() {
     <section id="about" className="relative py-32 lg:py-48 px-6 sm:px-12 lg:px-24" data-testid="about-section">
       <div className="grid lg:grid-cols-12 gap-16 lg:gap-24">
         <div className="lg:col-span-5">
-          <div className="section-label mb-8">// 01 — About</div>
+          <div className="section-label mb-8">// 02 — About</div>
           <h2 className="font-display uppercase tracking-tighter text-white text-4xl sm:text-5xl lg:text-6xl leading-[0.95]">
             Engineering<br/>
             <span className="text-neon-lime glow">intelligence</span><br/>
             that ships.
           </h2>
           <p className="mt-8 font-mono text-sm text-white/60 leading-relaxed max-w-md" data-testid="about-bio">
-            From healthcare AI agents to enterprise-grade data platforms — I build
-            production systems that bridge LLMs, retrieval, and real business outcomes.
-            Three years in, ten+ projects shipped, no theory left untested.
+            Results-driven GenAI Data Engineer with 3 years of experience designing AI-powered
+            solutions, building scalable data pipelines, and developing enterprise automation
+            platforms. Deep expertise in RAG, local LLMs (Ollama), Copilot Studio agents and
+            full-stack AI platforms — certified across AWS, Databricks, Google Cloud and OCI.
           </p>
 
           <div className="mt-10 flex flex-wrap gap-2" data-testid="about-tags">

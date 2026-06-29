@@ -14,7 +14,7 @@ export default function Projects() {
     <section id="work" className="relative py-32 lg:py-48 px-6 sm:px-12 lg:px-24 border-t border-white/5" data-testid="projects-section">
       <div className="flex items-end justify-between flex-wrap gap-8 mb-12">
         <div>
-          <div className="section-label mb-6">// 03 — Selected Work</div>
+          <div className="section-label mb-6">// 04 — Selected Work</div>
           <h2 className="font-display uppercase tracking-tighter text-white text-4xl sm:text-5xl lg:text-6xl leading-[0.95]">
             <span className="text-neon-lime glow">13</span> Projects.<br/>All shipped.
           </h2>

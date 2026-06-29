@@ -98,9 +98,33 @@ export const CERTIFICATIONS = [
 ];
 
 export const NAV_LINKS = [
+  { label: "Meet", href: "#meet-me" },
   { label: "About", href: "#about" },
   { label: "Skills", href: "#skills" },
   { label: "Work", href: "#work" },
   { label: "Career", href: "#career" },
   { label: "Contact", href: "#contact" },
+];
+
+export const EDUCATION = {
+  degree: "B.E. Computer Science & Engineering",
+  institution: "SJC Institute of Technology, Chikkaballapur",
+  period: "2018 – 2022",
+};
+
+export const AWARDS = [
+  "Best Performer Award (AA) — client recognition for outstanding engagement delivery",
+  "Sponsored to build Turbotic Automation RPA pipeline — recognized for RPA initiative",
+  "Visual Treat Award — Best Graphics Creator at company event",
+  "Top 15 — BOSCH Ideathon 2K21 (Road Safety, organized by IRSC)",
+];
+
+export const CERT_HIGHLIGHTS = [
+  "Databricks Certified Data Engineer Professional",
+  "Databricks Certified Data Engineer Associate",
+  "Google Professional Data Engineer",
+  "OCI Generative AI Professional",
+  "AWS Certified Cloud Practitioner",
+  "Generative AI Leader — Google",
+  "Anthropic · MCP & Claude 101",
 ];

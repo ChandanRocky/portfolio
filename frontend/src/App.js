@@ -4,6 +4,7 @@ import SmoothScroll from "@/components/SmoothScroll";
 import CustomCursor from "@/components/CustomCursor";
 import Nav from "@/components/Nav";
 import Hero from "@/components/Hero";
+import Character from "@/components/Character";
 import About from "@/components/About";
 import Skills from "@/components/Skills";
 import Projects from "@/components/Projects";
@@ -18,6 +19,7 @@ const Home = () => {
         <Nav />
         <main>
           <Hero />
+          <Character />
           <About />
           <Skills />
           <Projects />

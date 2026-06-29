@@ -6,7 +6,7 @@ export default function Skills() {
     <section id="skills" className="relative py-32 lg:py-48 px-6 sm:px-12 lg:px-24 border-t border-white/5" data-testid="skills-section">
       <div className="mb-16 flex items-end justify-between flex-wrap gap-6">
         <div>
-          <div className="section-label mb-6">// 02 — Technical Arsenal</div>
+          <div className="section-label mb-6">// 03 — Technical Arsenal</div>
           <h2 className="font-display uppercase tracking-tighter text-white text-4xl sm:text-5xl lg:text-6xl leading-[0.95]">
             Skills <span className="text-neon-lime">that</span> ship.
           </h2>

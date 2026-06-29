@@ -1,12 +1,12 @@
 import { motion } from "framer-motion";
-import { EXPERIENCE, CERTIFICATIONS } from "@/data/portfolio";
+import { EXPERIENCE, CERTIFICATIONS, EDUCATION, AWARDS, CERT_HIGHLIGHTS } from "@/data/portfolio";
 
 export default function Career() {
   return (
     <section id="career" className="relative py-32 lg:py-48 border-t border-white/5" data-testid="career-section">
       {/* Certifications marquee */}
       <div className="px-6 sm:px-12 lg:px-24 mb-24">
-        <div className="section-label mb-6">// 04 — Certifications</div>
+        <div className="section-label mb-6">// 05 — Certifications</div>
         <h2 className="font-display uppercase tracking-tighter text-white text-4xl sm:text-5xl lg:text-6xl leading-[0.95]">
           Certified across <span className="text-neon-lime glow">4 clouds.</span>
         </h2>
@@ -39,7 +39,7 @@ export default function Career() {
 
       {/* Experience Timeline */}
       <div className="px-6 sm:px-12 lg:px-24 mt-32">
-        <div className="section-label mb-6">// 05 — Career Log</div>
+        <div className="section-label mb-6">// 06 — Career Log</div>
         <h2 className="font-display uppercase tracking-tighter text-white text-4xl sm:text-5xl lg:text-6xl leading-[0.95] mb-16">
           Where I&apos;ve <span className="text-neon-lime glow">shipped.</span>
         </h2>
@@ -79,6 +79,65 @@ export default function Career() {
               </ul>
             </motion.div>
           ))}
+        </div>
+
+        {/* Education + Awards bento */}
+        <div className="mt-24 grid lg:grid-cols-12 gap-3 sm:gap-4" data-testid="edu-awards">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-60px" }}
+            transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
+            className="cell cell-corner p-6 lg:col-span-5"
+            data-testid="education-card"
+          >
+            <div className="font-mono text-[10px] tracking-[0.3em] uppercase text-neon-lime/80 mb-4">
+              // Education
+            </div>
+            <h3 className="font-display uppercase tracking-tight text-white text-xl sm:text-2xl leading-tight">
+              {EDUCATION.degree}
+            </h3>
+            <div className="mt-3 font-mono text-sm text-white/70">
+              {EDUCATION.institution}
+            </div>
+            <div className="mt-1 font-mono text-xs text-white/40 tracking-[0.2em] uppercase">
+              {EDUCATION.period}
+            </div>
+            <div className="mt-6 pt-6 border-t border-white/10">
+              <div className="font-mono text-[10px] tracking-[0.3em] uppercase text-white/40 mb-3">Top certifications</div>
+              <ul className="space-y-2">
+                {CERT_HIGHLIGHTS.map((c) => (
+                  <li key={c} className="font-mono text-xs text-white/70 flex items-start gap-2">
+                    <span className="text-neon-cyan mt-0.5">◆</span><span>{c}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </motion.div>
+
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-60px" }}
+            transition={{ duration: 0.7, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
+            className="cell cell-corner p-6 lg:col-span-7"
+            data-testid="awards-card"
+          >
+            <div className="font-mono text-[10px] tracking-[0.3em] uppercase text-neon-lime/80 mb-4">
+              // Awards & Recognition
+            </div>
+            <h3 className="font-display uppercase tracking-tight text-white text-xl sm:text-2xl leading-tight mb-6">
+              Earning the <span className="text-neon-lime">spotlight.</span>
+            </h3>
+            <ul className="space-y-4">
+              {AWARDS.map((a, i) => (
+                <li key={i} className="font-mono text-sm text-white/75 flex items-start gap-4 leading-relaxed">
+                  <span className="font-display text-neon-lime text-base shrink-0">★ {String(i + 1).padStart(2, "0")}</span>
+                  <span>{a}</span>
+                </li>
+              ))}
+            </ul>
+          </motion.div>
         </div>
       </div>
     </section>

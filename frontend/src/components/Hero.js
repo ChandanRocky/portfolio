@@ -76,6 +76,14 @@ export default function Hero() {
             <a href="#contact" data-testid="hero-cta-contact" className="btn-ghost">
               Get In Touch
             </a>
+            <a
+              href={PROFILE.resumeUrl}
+              download
+              data-testid="hero-cta-resume"
+              className="btn-ghost"
+            >
+              <span className="text-neon-cyan">↓</span> Resume
+            </a>
           </motion.div>
         </motion.div>
 
