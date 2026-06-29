@@ -10,9 +10,5 @@ services:
         value: 3.11.0
       - key: CORS_ORIGINS
         value: "https://chandan-ai-engineer.vercel.app"
-      - key: MONGO_URL
-        sync: false
-      - key: DB_NAME
-        sync: false
       - key: RESEND_API_KEY
         sync: false
