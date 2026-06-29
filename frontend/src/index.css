@@ -316,5 +316,84 @@ a, button, [data-cursor="hover"] { cursor: none; }
   background-position: -1px -1px;
 }
 
+/* Hologram speaking animations (Meet Me) */
+@keyframes scan-sweep {
+  0%   { transform: translateY(-110%); opacity: 0; }
+  10%  { opacity: 1; }
+  90%  { opacity: 1; }
+  100% { transform: translateY(110%); opacity: 0; }
+}
+.scan-sweep {
+  position: absolute;
+  left: 0; right: 0;
+  height: 28%;
+  background: linear-gradient(to bottom,
+    transparent 0%,
+    rgba(204,255,0,0.18) 35%,
+    rgba(0,240,255,0.35) 50%,
+    rgba(204,255,0,0.18) 65%,
+    transparent 100%);
+  filter: blur(2px);
+  animation: scan-sweep 3.6s linear infinite;
+  mix-blend-mode: screen;
+  pointer-events: none;
+}
+
+@keyframes flicker {
+  0%, 100% { opacity: 1; }
+  50%      { opacity: 0.92; }
+  52%      { opacity: 0.7;  }
+  54%      { opacity: 1; }
+}
+.flicker { animation: flicker 5s linear infinite; }
+
+@keyframes rgb-shift {
+  0%, 100% { transform: translate(0, 0); }
+  20%      { transform: translate(2px, -1px); }
+  40%      { transform: translate(-2px, 1px); }
+  60%      { transform: translate(1px, 0); }
+  80%      { transform: translate(-1px, -1px); }
+}
+.is-speaking .layer-cyan { animation: rgb-shift 0.4s steps(2) infinite; }
+.is-speaking .layer-magenta { animation: rgb-shift 0.4s steps(2) infinite reverse; }
+
+@keyframes eq-bar {
+  0%, 100% { transform: scaleY(0.25); }
+  50%      { transform: scaleY(1); }
+}
+.eq-bar {
+  display: inline-block;
+  width: 4px;
+  height: 100%;
+  background: linear-gradient(to top, #CCFF00, #00F0FF);
+  transform-origin: bottom;
+  transform: scaleY(0.2);
+  border-radius: 1px;
+}
+.is-speaking .eq-bar {
+  animation: eq-bar 0.7s ease-in-out infinite;
+}
+
+@keyframes float-y {
+  0%, 100% { transform: translateY(0); }
+  50%      { transform: translateY(-6px); }
+}
+.float-y { animation: float-y 4s ease-in-out infinite; }
+
+@keyframes orbit {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
+}
+.orbit-slow { animation: orbit 18s linear infinite; }
+.orbit-rev  { animation: orbit 24s linear infinite reverse; }
+
+@keyframes ping-ring {
+  0%   { transform: scale(0.6); opacity: 0.8; }
+  100% { transform: scale(1.35); opacity: 0; }
+}
+.ping-ring { animation: ping-ring 2.4s ease-out infinite; }
+
 /* Hide default focus rings; we'll style our own */
 :focus-visible { outline: 2px solid #00F0FF; outline-offset: 4px; }
+
+
