@@ -1,11 +1,12 @@
 import { motion } from "framer-motion";
 import { PROFILE } from "@/data/portfolio";
+import ContactForm from "@/components/ContactForm";
 
 const CONTACTS = [
-  { label: "LinkedIn", value: "chandan-gowda", href: PROFILE.linkedin, testid: "contact-linkedin" },
-  { label: "Email · Fastest Reply", value: PROFILE.email, href: `mailto:${PROFILE.email}`, testid: "contact-email" },
+  { label: "LinkedIn", value: "chandan-gowda", href: PROFILE.linkedin, testid: "contact-linkedin", external: true },
+  { label: "Email", value: PROFILE.email, href: `mailto:${PROFILE.email}`, testid: "contact-email" },
   { label: "Phone · India", value: PROFILE.phone, href: `tel:${PROFILE.phone.replace(/\s+/g, "")}`, testid: "contact-phone" },
-  { label: "GitHub", value: "ChandanRocky", href: PROFILE.github, testid: "contact-github" },
+  { label: "GitHub", value: "ChandanRocky", href: PROFILE.github, testid: "contact-github", external: true },
   { label: "Resume · Download", value: ".docx · Updated", href: PROFILE.resumeUrl, download: true, testid: "contact-resume" },
 ];
 
@@ -42,34 +43,46 @@ export default function Contact() {
           ))}
         </div>
 
-        <div className="mt-16 grid md:grid-cols-3 lg:grid-cols-5 gap-3 sm:gap-4" data-testid="contact-cards">
-          {CONTACTS.map((c, i) => (
-            <motion.a
-              key={c.label}
-              href={c.href}
-              target={c.label === "LinkedIn" || c.label === "GitHub" ? "_blank" : undefined}
-              rel="noopener noreferrer"
-              download={c.download}
-              data-testid={c.testid}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6, delay: i * 0.08, ease: [0.16, 1, 0.3, 1] }}
-              className="cell cell-corner p-6 group flex flex-col justify-between min-h-[180px]"
-              data-cursor="hover"
-            >
-              <div className="flex items-center justify-between">
-                <span className="font-mono text-[10px] tracking-[0.3em] uppercase text-white/40">/{String(i + 1).padStart(2, "0")}</span>
-                <span className="font-mono text-white/30 group-hover:text-neon-lime group-hover:-translate-y-1 group-hover:translate-x-1 transition-transform">↗</span>
-              </div>
-              <div>
-                <div className="font-mono text-[10px] tracking-[0.3em] uppercase text-neon-lime/80 mb-2">{c.label}</div>
-                <div className="font-display uppercase tracking-tight text-white text-lg sm:text-xl break-all group-hover:text-neon-lime transition-colors">
-                  {c.value}
+        {/* Form + side cards */}
+        <div className="mt-16 grid lg:grid-cols-12 gap-6">
+          <div className="lg:col-span-7">
+            <div className="font-mono text-[10px] tracking-[0.3em] uppercase text-neon-lime/80 mb-3">
+              // Send a transmission
+            </div>
+            <ContactForm />
+          </div>
+
+          <div className="lg:col-span-5 grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4 content-start" data-testid="contact-cards">
+            {CONTACTS.map((c, i) => (
+              <motion.a
+                key={c.label}
+                href={c.href}
+                target={c.external ? "_blank" : undefined}
+                rel="noopener noreferrer"
+                download={c.download}
+                data-testid={c.testid}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6, delay: i * 0.08, ease: [0.16, 1, 0.3, 1] }}
+                className={`cell cell-corner p-5 group flex flex-col justify-between min-h-[140px] ${
+                  c.label === "Resume · Download" ? "sm:col-span-2" : ""
+                }`}
+                data-cursor="hover"
+              >
+                <div className="flex items-center justify-between">
+                  <span className="font-mono text-[10px] tracking-[0.3em] uppercase text-white/40">/{String(i + 1).padStart(2, "0")}</span>
+                  <span className="font-mono text-white/30 group-hover:text-neon-lime group-hover:-translate-y-1 group-hover:translate-x-1 transition-transform">↗</span>
                 </div>
-              </div>
-            </motion.a>
-          ))}
+                <div>
+                  <div className="font-mono text-[10px] tracking-[0.3em] uppercase text-neon-lime/80 mb-2">{c.label}</div>
+                  <div className="font-display uppercase tracking-tight text-white text-base sm:text-lg break-all group-hover:text-neon-lime transition-colors">
+                    {c.value}
+                  </div>
+                </div>
+              </motion.a>
+            ))}
+          </div>
         </div>
 
         {/* Footer line */}

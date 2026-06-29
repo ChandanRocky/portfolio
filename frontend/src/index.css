@@ -275,6 +275,8 @@ body {
 }
 
 a, button, [data-cursor="hover"] { cursor: none; }
+input, textarea, select { cursor: text !important; }
+input[type="checkbox"], input[type="radio"], input[type="submit"], input[type="button"] { cursor: none !important; }
 
 /* Glow text utility */
 .glow {
