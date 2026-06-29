@@ -88,13 +88,13 @@ export const EXPERIENCE = [
 ];
 
 export const CERTIFICATIONS = [
-  "https://chandan-ai-engineer.vercel.app/certificates/Screenshot%202026-06-29%20at%2010.48.10%E2%80%AFAM.png",
-  "https://chandan-ai-engineer.vercel.app/certificates/Screenshot%202026-06-29%20at%2010.48.26%E2%80%AFAM.png",
-  "https://chandan-ai-engineer.vercel.app/certificates/Screenshot%202026-06-29%20at%2010.48.38%E2%80%AFAM.png",
-  "https://chandan-ai-engineer.vercel.app/certificates/Screenshot%202026-06-29%20at%2010.49.23%E2%80%AFAM.png",
-  "https://chandan-ai-engineer.vercel.app/certificates/Screenshot%202026-06-29%20at%2010.49.50%E2%80%AFAM.png",
-  "https://chandan-ai-engineer.vercel.app/certificates/Screenshot%202026-06-29%20at%2010.51.31%E2%80%AFAM.png",
-  "https://chandan-ai-engineer.vercel.app/certificates/Screenshot%202026-06-29%20at%2010.52.03%E2%80%AFAM.png",
+  "/certificates/Screenshot 2026-06-29 at 10.48.10 AM.png",
+  "/certificates/Screenshot 2026-06-29 at 10.48.26 AM.png",
+  "/certificates/Screenshot 2026-06-29 at 10.48.38 AM.png",
+  "/certificates/Screenshot 2026-06-29 at 10.49.23 AM.png",
+  "/certificates/Screenshot 2026-06-29 at 10.49.50 AM.png",
+  "/certificates/Screenshot 2026-06-29 at 10.51.31 AM.png",
+  "/certificates/Screenshot 2026-06-29 at 10.52.03 AM.png",
 ];
 
 export const NAV_LINKS = [
