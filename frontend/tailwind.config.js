@@ -12,7 +12,22 @@ module.exports = {
         md: 'calc(var(--radius) - 2px)',
         sm: 'calc(var(--radius) - 4px)'
       },
+      fontFamily: {
+        display: ['Orbitron', 'sans-serif'],
+        mono: ['JetBrains Mono', 'monospace'],
+      },
       colors: {
+        neon: {
+          lime: '#CCFF00',
+          cyan: '#00F0FF',
+          danger: '#FF003C',
+        },
+        void: {
+          DEFAULT: '#050505',
+          900: '#050505',
+          800: '#0a0a0a',
+          700: '#111111',
+        },
         background: 'hsl(var(--background))',
         foreground: 'hsl(var(--foreground))',
         card: {

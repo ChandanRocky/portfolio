@@ -1,41 +1,32 @@
-import { useEffect } from "react";
 import "@/App.css";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import axios from "axios";
-import { HOME } from "@/constants/testIds";
-
-const BACKEND_URL = process.env.REACT_APP_BACKEND_URL;
-const API = `${BACKEND_URL}/api`;
+import SmoothScroll from "@/components/SmoothScroll";
+import CustomCursor from "@/components/CustomCursor";
+import Nav from "@/components/Nav";
+import Hero from "@/components/Hero";
+import About from "@/components/About";
+import Skills from "@/components/Skills";
+import Projects from "@/components/Projects";
+import Career from "@/components/Career";
+import Contact from "@/components/Contact";
 
 const Home = () => {
-  const helloWorldApi = async () => {
-    try {
-      const response = await axios.get(`${API}/`);
-      console.log(response.data.message);
-    } catch (e) {
-      console.error(e, `errored out requesting / api`);
-    }
-  };
-
-  useEffect(() => {
-    helloWorldApi();
-  }, []);
-
   return (
-    <div>
-      <header className="App-header">
-        <a
-          data-testid={HOME.emergentLink}
-          className="App-link"
-          href="https://emergent.sh"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <img src="https://avatars.githubusercontent.com/in/1201222?s=120&u=2686cf91179bbafbc7a71bfbc43004cf9ae1acea&v=4" />
-        </a>
-        <p className="mt-5">Building something incredible ~!</p>
-      </header>
-    </div>
+    <SmoothScroll>
+      <div className="relative bg-void-900 text-white" data-testid="home">
+        <CustomCursor />
+        <Nav />
+        <main>
+          <Hero />
+          <About />
+          <Skills />
+          <Projects />
+          <Career />
+          <Contact />
+        </main>
+        <div className="grain-overlay" aria-hidden />
+      </div>
+    </SmoothScroll>
   );
 };
 
@@ -44,9 +35,7 @@ function App() {
     <div className="App">
       <BrowserRouter>
         <Routes>
-          <Route path="/" element={<Home />}>
-            <Route index element={<Home />} />
-          </Route>
+          <Route path="/" element={<Home />} />
         </Routes>
       </BrowserRouter>
     </div>
