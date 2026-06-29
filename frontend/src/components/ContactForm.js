@@ -7,7 +7,12 @@ export default function ContactForm() {
   const [form, setForm] = useState({ name: "", email: "", subject: "", message: "" });
   const [status, setStatus] = useState({ state: "idle", message: "" });
 
-  const onChange = (e) => setForm({ ...form, [e.target.name]: e.target.value });
+  const onChange = (e) => {
+    setForm({ ...form, [e.target.name]: e.target.value });
+    if (status.state === "success" || status.state === "error") {
+      setStatus({ state: "idle", message: "" });
+    }
+  };
 
   const onSubmit = async (e) => {
     e.preventDefault();

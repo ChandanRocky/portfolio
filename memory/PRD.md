@@ -5,55 +5,55 @@
 > GitHub: https://github.com/ChandanRocky/portfolio.git
 
 ## User choices
-- **Aesthetic:** Dark cyberpunk + 3D immersive (design agent free to pick)
+- **Aesthetic:** Dark cyberpunk + 3D immersive
 - **Animation level:** Heavy
-- **Content source:** Existing live portfolio + uploaded resume (`Chandan_Gowda_AH_Resume_Updated (2).docx`)
-- **Tech stack:** No preference → React + Three.js + Framer Motion + Lenis
-- **Sections:** "nothing much" to add → kept original sections, added Education + Awards + Meet-Me Hologram from resume
+- **Content source:** Live portfolio + uploaded resume
+- **Tech stack:** React + Three.js + Framer Motion + Lenis + FastAPI (Resend)
+- **Voice for Meet-Me:** OpenAI TTS `onyx` (Emergent LLM key)
+- **Background music:** Synthesized cyberpunk bed via ffmpeg (royalty-free, generated locally)
+- **Contact backend:** Resend transactional email → chandangowdaa.h17@gmail.com (sandbox sender `onboarding@resend.dev`)
 
 ## Architecture
-- **Frontend:** React 19 (CRA + craco), Tailwind, Framer Motion, Lenis smooth scroll, Three.js (HeroScene), JetBrains Mono + Orbitron
-- **Backend:** FastAPI starter (no app logic needed — portfolio is static)
-- **Database:** MongoDB (unused for this iteration)
-- **Hosting:** Container via supervisor (frontend on :3000, backend on :8001)
+- **Frontend:** React 19 + Tailwind + Framer Motion + Lenis + Three.js (HeroScene) + Web Audio API (Meet-Me equalizer) — JetBrains Mono + Orbitron
+- **Backend:** FastAPI on :8001 — endpoints `/api/`, `/api/status` (legacy), `/api/contact` (Resend)
+- **Audio generator:** `/app/backend/scripts/generate_meet_me_audio.py` (one-shot — re-run to regenerate `/app/frontend/public/audio/meet-me.mp3` if the script changes)
+- **Mongo:** Available but unused for this iteration
 
 ## Components
-- `App.js` — Routes: `/` → `SmoothScroll(CustomCursor, Nav, Hero, Character, About, Skills, Projects, Career, Contact)` + grain overlay
-- `Hero.js` — Three.js particle field + wireframe icosahedron, glitch text "CHANDAN / GOWDA.AH", typewriter role, 3 CTAs (Projects, Contact, Resume download)
-- `Character.js` — "Meet Me" hologram: real photo with lime/cyan tint + RGB glitch when speaking + scan-sweep + 22-bar animated equalizer + HUD labels + terminal speech bubble that cycles 6 first-person intro lines
-- `About.js` — Bento stat counters (3+, 10+, 7, 10+, 4) + bio from resume summary + focus tags
-- `Skills.js` — 7 terminal-style cards across 2 domains (AI/GenAI, Data Eng & Cloud)
-- `Projects.js` — 13 cards + filter pills (All / AI Agents / Data Eng / Full Stack)
-- `Career.js` — Certs marquee (7 imgs × 2 loop) + glowing timeline (Accion Labs + Koantek) + Education card + Awards card (4 awards)
-- `Contact.js` — Headline "Ready to build something intelligent?" + 5 cards (LinkedIn, Email, Phone, GitHub, Resume)
-- `Nav.js`, `CustomCursor.js`, `SmoothScroll.js`, `HeroScene.js`
+- `App.js`, `Nav.js`, `CustomCursor.js`, `SmoothScroll.js`, `HeroScene.js`
+- `Hero.js` — Three.js scene + glitch text + typewriter + 3 CTAs (Projects, Contact, Resume download)
+- `Character.js` — "Meet Me" hologram with real photo + pre-rendered 35-sec OpenAI TTS intro + cyberpunk synth bed + Web Audio AnalyserNode-driven equalizer + play/restart/seek controls + caption ticker
+- `About.js` — Animated stat counters + resume-derived bio + focus tags
+- `Skills.js` — Terminal-style cards for 7 categories across 2 domains
+- `Projects.js` — 13 cards + filter pills
+- `Career.js` — Certs marquee + glowing timeline + Education + Awards cards
+- `ContactForm.js` — Real Resend-backed form (name / email / subject / message) with live status
+- `Contact.js` — Headline + form (left) + 5 side cards (LinkedIn / Email / Phone / GitHub / Resume)
 
-## What's been implemented (2026-06-29)
-- Full single-page portfolio rebuilt from scratch in dark cyberpunk + 3D immersive style
-- Three.js particle hero with mouse-parallax + wireframe icosahedron/octahedron
-- Custom neon cursor (auto-disabled on touch devices) + Lenis smooth scroll
-- "Meet Me" hologram with real uploaded photo, scan-sweep, RGB glitch, equalizer, HUD labels, 6-line auto-cycling speech terminal
-- All 13 projects ported from live site with category filter (All=13, AI Agents=8, Data Eng=3, Full Stack=2)
-- Stats counters with intersection-observer driven count-up
-- Certs marquee + glowing career timeline
-- Education + Awards added from the uploaded resume
-- Resume download button (Hero + Contact) → `/Chandan_Gowda_AH_Resume.docx` served from `frontend/public/`
-- 60+ `data-testid` attributes across interactive + key info elements
-- Tested by `testing_agent_v3` (iteration_2): all pass, zero console errors, mobile-responsive
+## Iteration 3 — What's been implemented (2026-06-29)
+- ✅ Real ~35-sec OpenAI TTS audio intro ("onyx" voice) + synthesized cyberpunk ambient bed (sine + fifth + flanger + brown noise + echo + loudnorm), pre-mixed via ffmpeg to `/audio/meet-me.mp3` (836 KB, 192 kbps)
+- ✅ Web Audio API AnalyserNode wired to a real-time 22-bar equalizer that reacts to actual playback waveform
+- ✅ Play / Pause / Restart / Seek controls, live caption ticker mapped to 8 script lines
+- ✅ Working `POST /api/contact` endpoint with Resend SDK + Pydantic validation + branded HTML email to owner + auto-reply confirmation (best-effort)
+- ✅ React contact form with inline status (idle / sending / ✓ delivered / ✗ error) + auto-clear status on next edit
+- ✅ Latest resume `.docx` served at `/Chandan_Gowda_AH_Resume.docx` (linked from Hero CTA + Contact card)
+- ✅ Form inputs allow native text cursor (overrode the global `cursor:none`)
+- ✅ Verified by `testing_agent_v3` (iteration_3): 7/7 backend pytest, 100% frontend, 0 console errors
+
+## What's left for the user to do
+- (Optional) **Verify your own domain in Resend** to switch the FROM address from `onboarding@resend.dev` → e.g. `hello@yourdomain.com`. Until then, sender shows as Resend's onboarding inbox (deliverable, just less branded). Auto-reply to the visitor may bounce in sandbox; the owner email always arrives.
 
 ## Backlog / Future ideas
-- **P1** — Real screenshots / cover art per project card (currently text-only)
-- **P1** — Working contact form (e.g., Resend) so visitors can write directly instead of mailto
-- **P2** — Blog / Notes section for sharing GenAI write-ups + boosting SEO
-- **P2** — Project case-study deep-dive pages (AccionTube architecture, Shorts Creator demo video)
-- **P2** — Light-mode toggle
-- **P3** — Recorded voice intro in Meet-Me section (TTS or real recording)
-- **P3** — Visitor analytics / lead tracking (PostHog already injected in public/index.html)
+- **P1** — Real screenshots/cover art per project card
+- **P2** — Replace synthesized bed with a richer composed track once user provides one (drop into `/app/frontend/public/audio/` and rerun the generator with `--bg <file>`)
+- **P2** — Blog / Notes section + project case-study deep-dives
+- **P3** — Captions overlay synced to audio timecodes (currently uses uniform 8-line split)
+- **P3** — Visitor analytics on contact submissions
+
+## Notes
+- Resend API key + LLM key are in `/app/backend/.env` (gitignored)
+- To regenerate the audio:  `python /app/backend/scripts/generate_meet_me_audio.py`
+- To re-test contact endpoint:  `curl -X POST $REACT_APP_BACKEND_URL/api/contact -H "Content-Type: application/json" -d '{"name":"Test","email":"chandangowdaa.h17@gmail.com","subject":"Test","message":"Hello"}'`
 
 ## Test credentials
 None — site is fully static / public. No auth flow exists.
-
-## Notes
-- Resume file lives at `/app/frontend/public/Chandan_Gowda_AH_Resume.docx`
-- Avatar photo loaded from Emergent customer assets (uploaded by user)
-- Original avatar `closed/open` PNGs from chandan-ai-engineer.vercel.app are NO LONGER used (replaced by hologram of real photo)
