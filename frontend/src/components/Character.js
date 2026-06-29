@@ -137,6 +137,7 @@ export default function Character() {
       a.removeEventListener("timeupdate", onTime);
       cancelAnimationFrame(rafRef.current);
     };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   // Pause when section is fully out of view
