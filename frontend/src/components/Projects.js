@@ -1,6 +1,40 @@
-import { useState, useMemo } from "react";
+import { useState, useMemo, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { PROJECTS, PROJECT_FILTERS } from "@/data/portfolio";
+import ScrambleText from "@/components/ScrambleText";
+
+function TiltCard({ children, className, ...rest }) {
+  const ref = useRef(null);
+
+  const onMove = (e) => {
+    const el = ref.current;
+    if (!el) return;
+    const r = el.getBoundingClientRect();
+    const x = (e.clientX - r.left) / r.width - 0.5;
+    const y = (e.clientY - r.top) / r.height - 0.5;
+    el.style.transform = `perspective(900px) rotateX(${-y * 6}deg) rotateY(${x * 8}deg) translateZ(0)`;
+    el.style.setProperty("--mx", `${(x + 0.5) * 100}%`);
+    el.style.setProperty("--my", `${(y + 0.5) * 100}%`);
+  };
+  const onLeave = () => {
+    const el = ref.current;
+    if (!el) return;
+    el.style.transform = "perspective(900px) rotateX(0) rotateY(0)";
+  };
+
+  return (
+    <div
+      ref={ref}
+      onMouseMove={onMove}
+      onMouseLeave={onLeave}
+      style={{ transformStyle: "preserve-3d", transition: "transform 0.18s ease-out" }}
+      className={className}
+      {...rest}
+    >
+      {children}
+    </div>
+  );
+}
 
 export default function Projects() {
   const [filter, setFilter] = useState("All");
@@ -16,7 +50,9 @@ export default function Projects() {
         <div>
           <div className="section-label mb-6">// 04 — Selected Work</div>
           <h2 className="font-display uppercase tracking-tighter text-white text-4xl sm:text-5xl lg:text-6xl leading-[0.95]">
-            <span className="text-neon-lime glow">13</span> Projects.<br/>All shipped.
+            <span className="text-neon-lime glow">
+              <ScrambleText text="13" testId="projects-count-scramble" />
+            </span> Projects.<br/>All shipped.
           </h2>
         </div>
         <div className="flex flex-wrap gap-2" data-testid="project-filters">
@@ -44,17 +80,19 @@ export default function Projects() {
       <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-4">
         <AnimatePresence mode="popLayout">
           {list.map((p, i) => (
-            <motion.article
+            <motion.div
               key={p.id}
               layout
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -20 }}
               transition={{ duration: 0.5, delay: (i % 9) * 0.05, ease: [0.16, 1, 0.3, 1] }}
-              className="cell cell-corner p-6 group relative flex flex-col min-h-[300px]"
-              data-cursor="hover"
-              data-testid={`project-card-${p.id}`}
             >
+              <TiltCard
+                className="cell cell-corner p-6 group relative flex flex-col min-h-[300px] tilt-spotlight"
+                data-cursor="hover"
+                data-testid={`project-card-${p.id}`}
+              >
               <div className="flex items-center justify-between mb-6">
                 <span className="font-mono text-[10px] tracking-[0.3em] uppercase text-white/40">
                   #{String(p.id).padStart(2, "0")} / {p.category}
@@ -90,7 +128,8 @@ export default function Projects() {
 
               {/* hover corner arrow */}
               <span className="absolute top-4 right-4 font-mono text-white/30 group-hover:text-neon-lime group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform">↗</span>
-            </motion.article>
+              </TiltCard>
+            </motion.div>
           ))}
         </AnimatePresence>
       </div>

@@ -2,6 +2,21 @@ import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { NAV_LINKS, PROFILE } from "@/data/portfolio";
 
+function LiveClock() {
+  const [now, setNow] = useState(new Date());
+  useEffect(() => {
+    const t = setInterval(() => setNow(new Date()), 1000);
+    return () => clearInterval(t);
+  }, []);
+  const time = now.toLocaleTimeString("en-IN", { hour12: false, timeZone: "Asia/Kolkata" });
+  return (
+    <span className="hidden lg:inline-flex items-center gap-2 font-mono text-[10px] tracking-[0.25em] uppercase text-white/40">
+      <span className="w-1 h-1 rounded-full bg-neon-lime animate-pulse" />
+      IN · {time}
+    </span>
+  );
+}
+
 export default function Nav() {
   const [open, setOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
@@ -42,13 +57,16 @@ export default function Nav() {
             ))}
           </nav>
 
-          <a
-            href={`mailto:${PROFILE.email}`}
-            data-testid="nav-cta-email"
-            className="hidden md:inline-flex items-center gap-2 font-mono text-xs tracking-[0.2em] uppercase text-neon-lime border border-neon-lime/60 px-4 py-2 hover:bg-neon-lime hover:text-black transition-colors"
-          >
-            <span className="pulse-dot" /> Available
-          </a>
+          <div className="hidden md:flex items-center gap-4">
+            <LiveClock />
+            <a
+              href={`mailto:${PROFILE.email}`}
+              data-testid="nav-cta-email"
+              className="inline-flex items-center gap-2 font-mono text-xs tracking-[0.2em] uppercase text-neon-lime border border-neon-lime/60 px-4 py-2 hover:bg-neon-lime hover:text-black transition-colors"
+            >
+              <span className="pulse-dot" /> Available
+            </a>
+          </div>
 
           <button
             data-testid="nav-mobile-toggle"

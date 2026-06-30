@@ -395,6 +395,24 @@ input[type="checkbox"], input[type="radio"], input[type="submit"], input[type="b
 }
 .ping-ring { animation: ping-ring 2.4s ease-out infinite; }
 
+/* Tilt spotlight — follows mouse via --mx/--my custom props set in TiltCard */
+.tilt-spotlight {
+  position: relative;
+}
+.tilt-spotlight::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: radial-gradient(220px circle at var(--mx, 50%) var(--my, 50%),
+    rgba(204,255,0,0.18), transparent 60%);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  z-index: 0;
+}
+.tilt-spotlight:hover::before { opacity: 1; }
+.tilt-spotlight > * { position: relative; z-index: 1; }
+
 /* Hide default focus rings; we'll style our own */
 :focus-visible { outline: 2px solid #00F0FF; outline-offset: 4px; }
 
