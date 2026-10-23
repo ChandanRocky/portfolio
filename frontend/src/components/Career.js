@@ -1,13 +1,13 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { EXPERIENCE, CERTIFICATIONS, EDUCATION, AWARDS, CERT_HIGHLIGHTS } from "@/data/portfolio";
-import { ExternalLink, Download, X, Award, Eye, Sparkles } from "lucide-react";
+import { ExternalLink, Download, X, Award, Eye, Sparkles, Crown } from "lucide-react";
 
 export default function Career() {
   const [selectedCert, setSelectedCert] = useState(null);
   const [activeCategory, setActiveCategory] = useState("All");
 
-  const categories = ["All", "Anthropic", "Databricks", "Google Cloud", "Oracle Cloud"];
+  const categories = ["All", "Anthropic", "Databricks", "Google Cloud", "Oracle Cloud", "Accion Labs"];
 
   const filteredCerts = CERTIFICATIONS.filter((c) => {
     if (activeCategory === "All") return true;
@@ -27,10 +27,10 @@ export default function Career() {
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-6">
           <div>
             <h2 className="font-display uppercase tracking-tighter text-white text-4xl sm:text-5xl lg:text-6xl leading-[0.95]">
-              Certified across <span className="text-neon-lime glow">13 Credentials.</span>
+              Certified across <span className="text-neon-lime glow">15+ Credentials.</span>
             </h2>
             <p className="mt-3 font-mono text-sm text-white/60 max-w-xl">
-              Anthropic Certified Architect & Practitioner · Databricks Professional · Google Cloud Data Engineer · OCI GenAI
+              Claude Certified Architect · Anthropic Certified Practitioner · Databricks Professional · Google Cloud Data Engineer · OCI GenAI
             </p>
           </div>
 
@@ -66,7 +66,11 @@ export default function Career() {
               <div
                 key={idx}
                 onClick={() => setSelectedCert(item)}
-                className="shrink-0 w-[280px] sm:w-[360px] h-[180px] sm:h-[220px] border border-white/10 bg-void-800 hover:border-neon-lime transition-all duration-300 overflow-hidden relative group cursor-pointer"
+                className={`shrink-0 w-[280px] sm:w-[360px] h-[180px] sm:h-[220px] border bg-void-800 transition-all duration-300 overflow-hidden relative group cursor-pointer ${
+                  item.featured
+                    ? "border-amber-400/60 shadow-[0_0_25px_rgba(251,191,36,0.2),0_0_50px_rgba(251,191,36,0.08)] hover:shadow-[0_0_35px_rgba(251,191,36,0.35),0_0_70px_rgba(251,191,36,0.12)] hover:border-amber-300"
+                    : "border-white/10 hover:border-neon-lime"
+                }`}
                 data-cursor="hover"
                 title={`Click to view ${title}`}
               >
@@ -78,26 +82,61 @@ export default function Career() {
                 />
                 
                 {/* Overlay gradient */}
-                <div className="absolute inset-0 bg-gradient-to-t from-void-950 via-void-950/40 to-transparent opacity-70 group-hover:opacity-90 transition-opacity" />
+                <div className={`absolute inset-0 bg-gradient-to-t ${
+                  item.featured
+                    ? "from-void-950 via-amber-950/30 to-transparent opacity-80 group-hover:opacity-90"
+                    : "from-void-950 via-void-950/40 to-transparent opacity-70 group-hover:opacity-90"
+                } transition-opacity`} />
+
+                {/* Featured Crown Badge */}
+                {item.featured && (
+                  <div className="absolute top-3 right-3 z-10">
+                    <div className="flex items-center gap-1.5 px-2.5 py-1 bg-gradient-to-r from-amber-500/90 to-amber-600/90 backdrop-blur-md border border-amber-400/50 shadow-[0_0_15px_rgba(251,191,36,0.3)]">
+                      <Crown size={12} className="text-void-950" />
+                      <span className="font-mono text-[8px] tracking-[0.25em] uppercase text-void-950 font-bold">Highest Level</span>
+                    </div>
+                  </div>
+                )}
 
                 {/* Top Badge */}
-                <div className="absolute top-3 left-3 right-3 flex items-center justify-between">
-                  <span className="font-mono text-[9px] tracking-[0.2em] uppercase px-2 py-0.5 bg-void-900/90 border border-white/10 text-white/80 backdrop-blur-md">
+                <div className={`absolute top-3 left-3 ${item.featured ? '' : 'right-3'} flex items-center justify-between`}>
+                  <span className={`font-mono text-[9px] tracking-[0.2em] uppercase px-2 py-0.5 backdrop-blur-md ${
+                    item.featured
+                      ? "bg-amber-950/80 border border-amber-400/30 text-amber-300"
+                      : "bg-void-900/90 border border-white/10 text-white/80"
+                  }`}>
                     {issuer}
                   </span>
-                  <span className="opacity-0 group-hover:opacity-100 transition-opacity text-neon-lime bg-void-900/90 p-1 rounded border border-neon-lime/30">
-                    <Eye size={14} />
-                  </span>
+                  {!item.featured && (
+                    <span className="opacity-0 group-hover:opacity-100 transition-opacity text-neon-lime bg-void-900/90 p-1 rounded border border-neon-lime/30">
+                      <Eye size={14} />
+                    </span>
+                  )}
                 </div>
 
                 {/* Bottom Title & Label */}
                 <div className="absolute bottom-3 left-3 right-3">
-                  <div className="font-mono text-[10px] tracking-[0.3em] uppercase text-neon-lime/80 mb-1">
-                    CERT_{String(certIndex).padStart(2, "0")}
+                  <div className={`font-mono text-[10px] tracking-[0.3em] uppercase mb-1 ${
+                    item.featured ? "text-amber-400/90" : "text-neon-lime/80"
+                  }`}>
+                    {item.featured ? "★ FEATURED" : `CERT_${String(certIndex).padStart(2, "0")}`}
                   </div>
-                  <h4 className="font-display text-sm uppercase text-white truncate leading-tight group-hover:text-neon-lime transition-colors">
+                  <h4 className={`font-display text-sm uppercase truncate leading-tight transition-colors ${
+                    item.featured
+                      ? "text-amber-100 group-hover:text-amber-300"
+                      : "text-white group-hover:text-neon-lime"
+                  }`}>
                     {title}
                   </h4>
+                  {item.level && (
+                    <span className={`inline-block mt-1 font-mono text-[9px] tracking-[0.15em] uppercase px-1.5 py-0.5 border ${
+                      item.featured
+                        ? "border-amber-400/30 text-amber-400/80 bg-amber-950/50"
+                        : "border-white/10 text-white/50 bg-void-900/50"
+                    }`}>
+                      {item.level}
+                    </span>
+                  )}
                 </div>
               </div>
             );

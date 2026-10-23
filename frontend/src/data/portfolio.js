@@ -3,7 +3,7 @@ export const PROFILE = {
   name: "Chandan Gowda AH",
   handle: "chandan-gowda",
   role: "GenAI Data Engineer",
-  tagline: "Results-driven GenAI Data Engineer designing AI-powered solutions, scalable data pipelines & enterprise automation. Deep expertise in RAG, local LLMs, Copilot Studio agents and full-stack AI platforms — certified across AWS, Databricks, Google Cloud & OCI.",
+  tagline: "Results-driven GenAI Data Engineer designing AI-powered solutions, scalable data pipelines & enterprise automation. Claude Certified Architect with deep expertise in RAG, local LLMs, Copilot Studio agents and full-stack AI platforms — certified across AWS, Databricks, Google Cloud & OCI.",
   status: "Open to GenAI · Data Engineering · LLM Engineering roles",
   location: "India",
   email: "chandangowdaa.h17@gmail.com",
@@ -19,7 +19,7 @@ export const STATS = [
   { label: "Years Experience", value: 3, suffix: "+" },
   { label: "Projects Delivered", value: 10, suffix: "+" },
   { label: "AI Agents Built", value: 7, suffix: "" },
-  { label: "Certifications", value: 13, suffix: "+" },
+  { label: "Certifications", value: 15, suffix: "+" },
   { label: "Cloud Platforms", value: 4, suffix: "" },
 ];
 
@@ -72,6 +72,7 @@ export const EXPERIENCE = [
       "Architected AccionTube — full-stack AI video platform with RAG chatbot (Ollama) & Azure AD SSO",
       "Built Shorts Creator: AI CLI tool using Groq + FFmpeg for automated 60–120s video extraction",
       "Designed Airflow-based data ingestion pipeline on AWS (Docker) for enterprise client Finvi",
+      "Recognized as Subject Matter Expert at Accion University — Certificate of Appreciation for inspiring learning & growth",
     ],
   },
   {
@@ -88,6 +89,18 @@ export const EXPERIENCE = [
 ];
 
 export const CERTIFICATIONS = [
+  {
+    id: "anthropic-architect-full",
+    title: "Claude Certified Architect",
+    issuer: "Anthropic",
+    category: "Anthropic",
+    date: "Oct 2026",
+    src: "/certificates/anthropic-claude-architect.png",
+    pdf: "/certificates/anthropic-claude-architect.pdf",
+    credentialUrl: "https://www.credly.com/badges/b1be9dc2-43f7-4a92-b194-c61a1b772e7b",
+    featured: true,
+    level: "Expert",
+  },
   {
     id: "anthropic-architect",
     title: "Claude Certified Architect - Foundations",
@@ -169,6 +182,17 @@ export const CERTIFICATIONS = [
     credentialUrl: null,
   },
   {
+    id: "gcp-bigquery-ml",
+    title: "Engineer Data for Predictive Modeling with BigQuery ML",
+    issuer: "Google Cloud",
+    category: "Google Cloud",
+    date: "Oct 2026",
+    src: "/certificates/gcp-bigquery-ml-skill-badge.png",
+    pdf: null,
+    credentialUrl: null,
+    level: "Intermediate",
+  },
+  {
     id: "gcp-de-professional",
     title: "Google Cloud Certified Professional Data Engineer",
     issuer: "Google Cloud",
@@ -218,6 +242,16 @@ export const CERTIFICATIONS = [
     pdf: null,
     credentialUrl: null,
   },
+  {
+    id: "accion-labs-appreciation",
+    title: "Certificate of Appreciation — Subject Matter Expert",
+    issuer: "Accion Labs",
+    category: "Accion Labs",
+    date: "Sep 2026",
+    src: "/certificates/accion-labs-appreciation.png",
+    pdf: null,
+    credentialUrl: null,
+  },
 ];
 
 export const NAV_LINKS = [
@@ -236,6 +270,7 @@ export const EDUCATION = {
 };
 
 export const AWARDS = [
+  "Subject Matter Expert — Accion University Certificate of Appreciation for Inspiring Learning & Growth (Sep 2026)",
   "Best Performer Award (AA) — client recognition for outstanding engagement delivery",
   "Sponsored to build Turbotic Automation RPA pipeline — recognized for RPA initiative",
   "Visual Treat Award — Best Graphics Creator at company event",
@@ -243,11 +278,12 @@ export const AWARDS = [
 ];
 
 export const CERT_HIGHLIGHTS = [
+  "Claude Certified Architect · Anthropic ★",
   "Claude Certified Architect - Foundations · Anthropic",
   "Databricks Certified Data Engineer Professional",
   "Google Cloud Certified Professional Data Engineer",
+  "BigQuery ML — Predictive Modeling · Google Cloud",
   "OCI Generative AI Professional",
   "Claude Code in Action · Anthropic",
   "Introduction to Model Context Protocol (MCP) · Anthropic",
-  "AWS Certified Cloud Practitioner",
 ];
