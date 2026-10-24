@@ -11,7 +11,7 @@ export const PROFILE = {
   linkedin: "https://www.linkedin.com/in/chandan-gowda-a-h-744908195/",
   github: "https://github.com/ChandanRocky",
   resumeUrl: "/Chandan_Gowda_AH_Resume.docx",
-  avatar: "https://chandan-ai-engineer.vercel.app/chandan_anime_closed.png",
+  avatar: "/profile.jpeg",
   focusTags: ["RAG Systems", "AI Agents", "Data Pipelines", "LLM Engineering", "Cloud Architecture"],
 };
 

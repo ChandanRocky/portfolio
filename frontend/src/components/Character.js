@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from "react";
 import { motion, useInView } from "framer-motion";
 import { PROFILE } from "@/data/portfolio";
 
-const PHOTO = "https://customer-assets.emergentagent.com/job_engineer-portfolio-71/artifacts/3pj26vap_profile.jpeg";
+const PHOTO = "/profile.jpeg";
 const AUDIO_SRC = "/audio/meet-me.mp3";
 
 const SCRIPT_LINES = [
